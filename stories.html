@@ -6,6 +6,8 @@
         <title>Your Stories - QueerStation</title>
         <link rel="stylesheet" href="style.css">
         <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js"></script>
     </head>
     <body>
         <div id="storiesPage" class="page">
@@ -48,51 +50,6 @@
                 </div>
             </div>
         </div>
-            <script>
-                document.addEventListener("DOMContentLoaded", () => {
-                    const savedStories = JSON.parse(localStorage.getItem("queerStories")) || [];
-                    savedStories.forEach(story => addStoryToDOM(story.name, story.text));
-                });
-
-                const form = document.getElementById("storyForm");
-                form.addEventListener("submit", function (e) {
-                    e.preventDefault();
-
-                    const name = document.getElementById("storyName").value.trim() || "Anonymous";
-                    const text = document.getElementById("storyContent").value.trim();
-                    if (!text) return;
-
-                    addStoryToDOM(name, text);
-
-                    const savedStories = JSON.parse(localStorage.getItem("queerStories")) || [];
-                    savedStories.push({ name, text });
-                    localStorage.setItem("queerStories", JSON.stringify(savedStories));
-
-                    form.reset();
-                });
-
-                function addStoryToDOM(name, text) {
-                    const grid = document.getElementById("storiesGrid");
-
-                    const card = document.createElement("div");
-                    card.className = "story-card";
-
-                    const header = document.createElement("div");
-                    header.className = "story-header";
-                    header.innerHTML = `<strong>${name}</strong><span class="story-date">June 2025</span>`;
-
-                    const content = document.createElement("div");
-                    content.className = "story-text";
-                    content.textContent = text;
-
-                    card.appendChild(header);
-                    card.appendChild(content);
-                    grid.prepend(card);
-
-                }
-                function goHome() {
-                        window.location.href = "index.html";
-                }
-            </script>
+        <script src="stories.js"></script>
     </body>
 </html>

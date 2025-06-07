@@ -1,4 +1,3 @@
-// Create floating shapes
 function createFloatingShapes() {
     const container = document.getElementById('floatingShapes');
     const shapes = ['●', '■', '▲', '★', '♥', '✦', '◆'];
@@ -18,7 +17,6 @@ function createFloatingShapes() {
     }
 }
 
-// Interactive functions
 function showLove() {
     alert('💖 LOVE IS EVERYWHERE! Check out local LGBTQ+ support groups, dating apps for the community, or just spread kindness today! 🏳️‍🌈');
 }
@@ -41,7 +39,6 @@ function getResources() {
     alert('📚 RESOURCES & SUPPORT:\n• The Trevor Project (crisis support)\n• PFLAG (family support)\n• Local LGBTQ+ community centers\n• Trans Lifeline\n• GLAAD for media representation\n• Your local Pride organization');
 }
 
-// Add interactive hover effects
 function initializeZinePieces() {
     document.querySelectorAll('.zine-piece').forEach(piece => {
         piece.addEventListener('mouseenter', function() {
@@ -52,7 +49,6 @@ function initializeZinePieces() {
             this.style.zIndex = '1';
         });
         
-        // Add click interaction
         piece.addEventListener('click', function() {
             const randomRotation = (Math.random() - 0.5) * 10;
             this.style.transform = `rotate(${randomRotation}deg) scale(1.05)`;
@@ -64,7 +60,6 @@ function initializeZinePieces() {
     });
 }
 
-// Add keyboard navigation for flags
 function initializeFlagNavigation() {
     document.querySelectorAll('.flag').forEach(flag => {
         flag.addEventListener('keydown', function(e) {
