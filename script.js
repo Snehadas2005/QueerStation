@@ -101,10 +101,106 @@ function initializeClickEffects() {
     });
 }
 
-// Initialize everything when DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
     createFloatingShapes();
     initializeZinePieces();
     initializeFlagNavigation();
     initializeClickEffects();
 });
+
+function showLove() {
+    document.getElementById('homePage').classList.remove('active');
+    document.getElementById('lovePage').classList.add('active');
+}
+
+function tellStory() {
+    document.getElementById('homePage').classList.remove('active');
+    document.getElementById('storiesPage').classList.add('active');
+    loadStoriesFromStorage();
+}
+
+function findEvents() {
+    window.open('https://www.google.com/search?q=pride+events+in+india', '_blank');
+}
+
+function getResources() {
+    document.getElementById('homePage').classList.remove('active');
+    document.getElementById('resourcesPage').classList.add('active');
+}
+
+function goHome() {
+    document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
+    document.getElementById('homePage').classList.add('active');
+}
+
+let stories = [];
+
+function addStory(name, story) {
+    const newStory = {
+        id: Date.now(),
+        name: name || 'Anonymous',
+        story: story,
+        timestamp: new Date().toLocaleDateString()
+    };
+    stories.push(newStory);
+    saveStoriesToStorage();
+    displayStories();
+}
+
+function saveStoriesToStorage() {
+}
+
+function loadStoriesFromStorage() {
+    displayStories();
+}
+
+function displayStories() {
+    const storiesGrid = document.getElementById('storiesGrid');
+    if (!storiesGrid) return;
+    
+    storiesGrid.innerHTML = '';
+    
+    if (stories.length === 0) {
+        storiesGrid.innerHTML = '<p class="no-stories">No stories yet. Be the first to share your experience!</p>';
+        return;
+    }
+    
+    stories.forEach(story => {
+        const storyCard = document.createElement('div');
+        storyCard.className = 'story-card';
+        storyCard.innerHTML = `
+            <div class="story-header">
+                <strong>${story.name}</strong>
+                <span class="story-date">${story.timestamp}</span>
+            </div>
+            <div class="story-text">${story.story}</div>
+        `;
+        storiesGrid.appendChild(storyCard);
+    });
+}
+
+function initializeFormHandlers() {
+    const loveForm = document.getElementById('loveForm');
+    if (loveForm) {
+        loveForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('💖 Your message of love has been sent! Thank you for spreading positivity in our community! 🏳️‍🌈');
+            this.reset();
+        });
+    }
+    
+    const storyForm = document.getElementById('storyForm');
+    if (storyForm) {
+        storyForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('storyName').value.trim();
+            const story = document.getElementById('storyContent').value.trim();
+            
+            if (story) {
+                addStory(name, story);
+                alert('🌟 Your story has been posted enormously! Thank you for sharing your truth! 🏳️‍🌈');
+                this.reset();
+            }
+        });
+    }
+}
