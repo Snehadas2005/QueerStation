@@ -74,7 +74,6 @@ function initializeFlagNavigation() {
     });
 }
 
-// Add punk energy with click effects
 function initializeClickEffects() {
     document.addEventListener('click', function(e) {
         if (e.target.tagName !== 'BUTTON' && !e.target.classList.contains('zine-piece')) {
