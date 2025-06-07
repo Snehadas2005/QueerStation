@@ -66,14 +66,19 @@
     </div>
 
     <script src="topsecret.js">
-        (function() {
-            emailjs.init(EMAILJS_SERVICE_ID); 
+        (function () {
+            emailjs.init(EMAILJS_USER_ID); 
         })();
 
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const form = document.getElementById("loveForm");
-            
-            form.addEventListener("submit", function(e) {
+
+            if (!form) {
+                console.warn("loveForm not found on the page.");
+                return;
+            }
+
+            form.addEventListener("submit", function (e) {
                 e.preventDefault();
 
                 const submitBtn = form.querySelector('.submit-btn');
@@ -82,10 +87,14 @@
                 submitBtn.disabled = true;
 
                 emailjs.sendForm(
-                    EMAILJS_USER_ID,    
-                    EMAILJS_TEMPLATE_ID,   
-                    form
+                    EMAILJS_SERVICE_ID,   
+                    EMAILJS_TEMPLATE_ID,  
+                form
                 )
+                .then(() => {
+                    alert("💖 Your message has been sent! Thank you for spreading the love.");
+                    form.reset();
+                })
                 .catch((error) => {
                     console.error("EmailJS Error:", error);
                     alert("Oops! Something went wrong. Please try again. 💥");
@@ -96,7 +105,6 @@
                 });
             });
         });
-
         function goHome() {
             window.location.href = "index.html";
         }

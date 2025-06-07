@@ -8,6 +8,3 @@ export const firebaseConfig = {
   measurementId: "G-1YSZYKSFT6"
 };
 
-export const serviceID = import.meta.env.EMAILJS_SERVICE_ID;
-export const templateID = import.meta.env.EMAILJS_TEMPLATE_ID;
-export const publicKey = import.meta.env.EMAILJS_PUBLIC_KEY;
