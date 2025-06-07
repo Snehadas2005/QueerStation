@@ -164,7 +164,7 @@ body {
 .floating-shape {
     position: absolute;
     pointer-events: none;
-    animation: float 8s ease-in-out infinite;
+    animation: float 2s ease-in-out infinite;
 }
 
 @keyframes float {
