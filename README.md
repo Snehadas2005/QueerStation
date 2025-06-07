@@ -7,9 +7,9 @@
 ---
 
 ## 🖼️ Live Demo
-[🔗 View Live Project][(https://brilliant-hamster-1e022f.netlify.app/index.html)]
+[(https://brilliant-hamster-1e022f.netlify.app/index.html)]
 
-[📁 View Submission Post](https://dev.to/your-post-link)
+[(https://dev.to/your-post-link)](https://dev.to/sneha_2004/queerstation-a-digital-pride-zine-revolution-43h4)]
 
 ---
 
