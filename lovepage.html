@@ -1,114 +1,126 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Spread the Love - QueerStation</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Spread the Love - QueerStation</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js"></script>
 </head>
 <body>
-    <div id="lovePage" class="page">
-        <button class="action-btn back-btn" onclick="goHome()">← BACK TO ZINE</button>
+  <div id="lovePage" class="page">
+    <button class="action-btn back-btn" onclick="goHome()">← BACK TO ZINE</button>
+  </div>
+
+  <div class="love-content">
+    <header class="header">
+      <h1 class="main-title">SPREAD THE LOVE</h1>
+      <p class="subtitle">💖 Send anonymous love messages to the community 🏳️‍🌈</p>
+    </header>
+
+    <div class="love-form">
+      <h3 style="color: #ff006e; margin-bottom: 20px; text-align: center;">Share Some Love!</h3>
+      <form id="loveForm">
+        <div class="form-group">
+          <label for="loveRecipient">To (optional):</label>
+          <input type="text" id="loveRecipient" name="to_name" placeholder="Someone special, the community, everyone..." />
+        </div>
+        <div class="form-group">
+          <label for="loveMessage">Your message of love:</label>
+          <textarea id="loveMessage" name="message" placeholder="Write something beautiful, encouraging, or just plain loving..." required></textarea>
+        </div>
+        <div class="form-group">
+          <label for="loveSender">From (optional):</label>
+          <input type="text" id="loveSender" name="from_name" placeholder="Your name, nickname, or stay anonymous..." />
+        </div>
+        <button type="submit" class="submit-btn">SEND LOVE 💕</button>
+      </form>
     </div>
 
-    <div class="love-content">
-        <header class="header">
-            <h1 class="main-title">SPREAD THE LOVE</h1>
-            <p class="subtitle">💖 Send anonymous love messages to the community 🏳️‍🌈</p>
-        </header>
-        
-        <div class="love-form">
-            <h3 style="color: #ff006e; margin-bottom: 20px; text-align: center;">Share Some Love!</h3>
-            <form id="loveForm">
-                <div class="form-group">
-                    <label for="loveRecipient">To (optional):</label>
-                    <input type="text" id="loveRecipient" name="to_name" placeholder="Someone special, the community, everyone...">
-                </div>
-                <div class="form-group">
-                    <label for="loveMessage">Your message of love:</label>
-                    <textarea id="loveMessage" name="message" placeholder="Write something beautiful, encouraging, or just plain loving..." required></textarea>
-                </div>
-                <div class="form-group">
-                    <label for="loveSender">From (optional):</label>
-                    <input type="text" id="loveSender" name="from_name" placeholder="Your name, nickname, or stay anonymous...">
-                </div>
-                <button type="submit" class="submit-btn">SEND LOVE 💕</button>
-            </form>
-        </div>
-        
-        <div class="love-quotes">
-            <h3 style="color: #06ffa5; margin-bottom: 20px; text-align: center;">Love Notes from the Community</h3>
-            <div class="stories-grid">
-                <div class="story-card">
-                    <div class="story-header">
-                        <strong>Anonymous</strong>
-                        <span class="story-date">Today</span>
-                    </div>
-                    <div class="story-text">"You are loved exactly as you are. Your queerness is not a burden to bear but a gift to celebrate. 🌈"</div>
-                </div>
-                <div class="story-card">
-                    <div class="story-header">
-                        <strong>Pride Ally</strong>
-                        <span class="story-date">Today</span>
-                    </div>
-                    <div class="story-text">"To everyone fighting to be their authentic self - you inspire me every day. Keep shining! ✨"</div>
-                </div>
-                <div class="story-card">
-                    <div class="story-header">
-                        <strong>Rainbow Heart</strong>
-                        <span class="story-date">Today</span>
-                    </div>
-                    <div class="story-text">"Your story matters. Your love matters. You matter. Happy Pride Month! 🏳️‍🌈💕"</div>
-                </div>
-            </div>
-        </div>
+    <div class="love-quotes">
+      <h3 style="color: #06ffa5; margin-bottom: 20px; text-align: center;">Love Notes from the Community</h3>
+      <div class="stories-grid" id="storiesGrid">
+      </div>
     </div>
+  </div>
 
-    <script>
-        (function () {
-            emailjs.init('Af2h9f8t7PaCI4Bux'); 
-        })();
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyB4kvaHLnaGIEPq-NQIuPeSHjyJyyypY7c",
+      authDomain: "queerstation.firebaseapp.com",
+      projectId: "queerstation",
+      storageBucket: "queerstation.appspot.com",
+      messagingSenderId: "1066174228299",
+      appId: "1:1066174228299:web:93cd053bbc2b01027feace",
+      measurementId: "G-1YSZYKSFT6"
+    };
 
-        document.addEventListener('DOMContentLoaded', function () {
-            const form = document.getElementById("loveForm");
+    const app = firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
 
-            if (!form) {
-                console.warn("loveForm not found on the page.");
-                return;
-            }
+    emailjs.init('Af2h9f8t7PaCI4Bux'); 
 
-            form.addEventListener("submit", function (e) {
-                e.preventDefault();
+    document.addEventListener('DOMContentLoaded', () => {
+      const form = document.getElementById("loveForm");
+      const storiesGrid = document.getElementById("storiesGrid");
 
-                const submitBtn = form.querySelector('.submit-btn');
-                const originalText = submitBtn.textContent;
-                submitBtn.textContent = 'SENDING LOVE... 💫';
-                submitBtn.disabled = true;
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        const submitBtn = form.querySelector('.submit-btn');
+        submitBtn.textContent = 'SENDING LOVE... 💫';
+        submitBtn.disabled = true;
 
-                emailjs.sendForm(
-                    'service_2wehmqo',   
-                    'template_97laugn',  
-                form
-                )
-                .then(() => {
-                    alert("💖 Your message has been sent! Thank you for spreading the love.");
-                    form.reset();
-                })
-                .catch((error) => {
-                    console.error("EmailJS Error:", error);
-                    alert("Oops! Something went wrong. Please try again. 💥");
-                })
-                .finally(() => {
-                    submitBtn.textContent = originalText;
-                    submitBtn.disabled = false;
-                });
+        const data = {
+          to_name: form.to_name.value,
+          from_name: form.from_name.value,
+          message: form.message.value
+        };
+
+        emailjs.sendForm('service_2wehmqo', 'template_97laugn', form)
+          .then(() => {
+            db.collection("loveMessages").add({
+              to: data.to_name || "Anonymous",
+              from: data.from_name || "Someone",
+              message: data.message,
+              date: new Date()
             });
+            alert("💖 Your message has been sent! Thank you for spreading the love.");
+            form.reset();
+          })
+          .catch((error) => {
+            console.error("EmailJS Error:", error);
+            alert("Oops! Something went wrong. Please try again. 💥");
+          })
+          .finally(() => {
+            submitBtn.textContent = 'SEND LOVE 💕';
+            submitBtn.disabled = false;
+          });
+      });
+
+      db.collection("loveMessages")
+        .orderBy("date", "desc")
+        .onSnapshot((snapshot) => {
+          storiesGrid.innerHTML = "";
+          snapshot.forEach((doc) => {
+            const data = doc.data();
+            storiesGrid.innerHTML += `
+              <div class="story-card">
+                <div class="story-header">
+                  <strong>${data.from}</strong>
+                  <span class="story-date">${new Date(data.date.toDate()).toDateString()}</span>
+                </div>
+                <div class="story-text">"${data.message}"</div>
+              </div>
+            `;
+          });
         });
-        function goHome() {
-            window.location.href = "index.html";
-        }
-    </script>
-    <script src="imp.js"></script>
+    });
+
+    function goHome() {
+      window.location.href = "index.html";
+    }
+  </script>
 </body>
 </html>
