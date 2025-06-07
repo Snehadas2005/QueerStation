@@ -1,4 +1,4 @@
-import { firebaseConfig } from "./topsecret.js";
+import { firebaseConfig } from "./imp.js";
 
 firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
