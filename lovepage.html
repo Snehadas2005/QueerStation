@@ -65,9 +65,9 @@
         </div>
     </div>
 
-    <script>
+    <script src="topsecret.js">
         (function() {
-            emailjs.init('Af2h9f8t7PaCI4Bux'); 
+            emailjs.init(EMAILJS_SERVICE_ID); 
         })();
 
         document.addEventListener('DOMContentLoaded', function() {
@@ -82,8 +82,8 @@
                 submitBtn.disabled = true;
 
                 emailjs.sendForm(
-                    'service_2wehmqo',    
-                    'template_97laugn',   
+                    EMAILJS_USER_ID,    
+                    EMAILJS_TEMPLATE_ID,   
                     form
                 )
                 .catch((error) => {
