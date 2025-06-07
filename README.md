@@ -1,6 +1,6 @@
 # 🌈 QueerStation – A Digital Pride Zine Revolution
 
-![QueerStation Banner]![Image](https://github.com/user-attachments/assets/6f1b9b85-aeae-423e-a2ee-fbc0cbe9f7a9) 
+![Image](https://github.com/user-attachments/assets/6f1b9b85-aeae-423e-a2ee-fbc0cbe9f7a9) 
 
 **QueerStation** is a vibrant, interactive, CSS-art-driven digital zine celebrating Pride Month and LGBTQ+ voices. Built for the [DEV.to Frontend Challenge - June Celebrations](https://dev.to/challenges/frontend-2025-06-04), it blends punk zine aesthetics with inclusive web design and uplifting community interactivity.
 
