@@ -37,15 +37,44 @@ body {
     font-family: 'Permanent Marker', cursive;
     font-size: clamp(3rem, 8vw, 8rem);
     color: white;
-    text-shadow: 4px 4px 0px #000, -1px -1px 0px #ff006e, 2px 2px 0px #8338ec;
+    text-shadow:
+        4px 4px 0px #000,
+        -1px -1px 0px #ff006e,
+        2px 2px 0px #8338ec;
     transform: rotate(-1deg);
     margin-bottom: 20px;
-    animation: subtleGlitch 4s ease-in-out infinite;
+    animation: subtleGlitch 4s infinite ease-in-out, glitchEffect 1.5s infinite;
+    position: relative;
 }
 
 @keyframes subtleGlitch {
-    0%, 90%, 100% { transform: rotate(-1deg) translate(0); }
-    95% { transform: rotate(-1deg) translate(-1px, 1px); }
+    0%, 90%, 100% {
+        transform: rotate(-1deg) translate(0);
+    }
+    95% {
+        transform: rotate(-1deg) translate(-1px, 1px);
+    }
+}
+
+@keyframes glitchEffect {
+    0% {
+        text-shadow: 2px 0 red, -2px 0 cyan;
+    }
+    20% {
+        text-shadow: -2px 0 magenta, 2px 0 lime;
+    }
+    40% {
+        text-shadow: 2px 2px yellow, -2px -2px blue;
+    }
+    60% {
+        text-shadow: 1px -1px orange, -1px 1px violet;
+    }
+    80% {
+        text-shadow: -2px 2px red, 2px -2px cyan;
+    }
+    100% {
+        text-shadow: 4px 4px 0px #000, -1px -1px 0px #ff006e, 2px 2px 0px #8338ec;
+    }
 }
 
 .subtitle {
