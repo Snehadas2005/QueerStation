@@ -199,3 +199,20 @@ function initializeFormHandlers() {
         });
     }
 }
+
+//Special thanks to Niko from Axrisi 
+const flags = document.querySelectorAll('.flag');    
+        const targetUrl = 'https://94dgq4.csb.app/';
+
+        flags.forEach(flag => {
+            flag.addEventListener('click', () => {
+                window.open(targetUrl, '_blank');
+            });
+
+            flag.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    window.open(targetUrl, '_blank');
+                }
+            });
+        });
