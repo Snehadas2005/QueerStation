@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Your Stories - QueerStation</title>
+        <link rel="stylesheet" href="style.css">
+        <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    </head>
+    <body>
+        <div id="storiesPage" class="page">
+            <button class="action-btn back-btn" onclick="goHome()">← BACK TO ZINE</button>
+            
+            <header class="header">
+                <h1 class="main-title">YOUR STORIES</h1>
+                <p class="subtitle">🌟 Share your truth, inspire others 🌟</p>
+            </header>
+            
+            <div class="story-form">
+                <h3 style="color: #ff006e; margin-bottom: 20px; text-align: center;">Tell Your Story</h3>
+                <form id="storyForm">
+                    <div class="form-group">
+                        <label for="storyName">Name (optional):</label>
+                        <input type="text" id="storyName" name="story_name" placeholder="Your name or stay anonymous...">
+                    </div>
+                    <div class="form-group">
+                        <label for="storyContent">Your story:</label>
+                        <textarea id="storyContent" name="story_content" placeholder="Share your coming out story, a moment of pride, advice for others, or anything from your queer journey..." required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">SHARE STORY ✨</button>
+                </form>
+            </div>
+            
+            <div class="stories-grid" id="storiesGrid">
+                <div class="story-card">
+                    <div class="story-header">
+                        <strong>Alex</strong>
+                        <span class="story-date">June 2025</span>
+                    </div>
+                    <div class="story-text">Coming out at 25 felt late, but it was exactly the right time for me. My chosen family celebrated with homemade pride flags and the biggest group hug. Sometimes family isn't blood - it's the people who see you and love you for exactly who you are.</div>
+                </div>
+                <div class="story-card">
+                    <div class="story-header">
+                        <strong>River</strong>
+                        <span class="story-date">June 2025</span>
+                    </div>
+                    <div class="story-text">First Pride parade changed my life. Seeing thousands of people celebrating love in all its forms - I finally understood I wasn't alone. The drag queens, the families, the activists, everyone dancing together. That's when I knew: this is my community.</div>
+                </div>
+            </div>
+        </div>
+            <script>
+                document.addEventListener("DOMContentLoaded", () => {
+                    const savedStories = JSON.parse(localStorage.getItem("queerStories")) || [];
+                    savedStories.forEach(story => addStoryToDOM(story.name, story.text));
+                });
+
+                const form = document.getElementById("storyForm");
+                form.addEventListener("submit", function (e) {
+                    e.preventDefault();
+
+                    const name = document.getElementById("storyName").value.trim() || "Anonymous";
+                    const text = document.getElementById("storyContent").value.trim();
+                    if (!text) return;
+
+                    addStoryToDOM(name, text);
+
+                    const savedStories = JSON.parse(localStorage.getItem("queerStories")) || [];
+                    savedStories.push({ name, text });
+                    localStorage.setItem("queerStories", JSON.stringify(savedStories));
+
+                    form.reset();
+                });
+
+                function addStoryToDOM(name, text) {
+                    const grid = document.getElementById("storiesGrid");
+
+                    const card = document.createElement("div");
+                    card.className = "story-card";
+
+                    const header = document.createElement("div");
+                    header.className = "story-header";
+                    header.innerHTML = `<strong>${name}</strong><span class="story-date">June 2025</span>`;
+
+                    const content = document.createElement("div");
+                    content.className = "story-text";
+                    content.textContent = text;
+
+                    card.appendChild(header);
+                    card.appendChild(content);
+                    grid.prepend(card);
+
+                }
+                function goHome() {
+                        window.location.href = "index.html";
+                }
+            </script>
+    </body>
+</html>
