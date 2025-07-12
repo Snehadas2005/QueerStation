@@ -12,7 +12,7 @@
 
 ## 🏆 Recognition
 
-This project was **selected as one of the winning projects** of the [Name of the Challenge].
+This project was **selected as one of the winning projects** of the [DEV.to Frontend Challenge – June Celebrations](https://dev.to/challenges/frontend-2025-06-04).
 
 > _"This project stands out for its bold design and meaningful content."_
 
