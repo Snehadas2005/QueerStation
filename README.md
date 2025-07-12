@@ -2,7 +2,7 @@
 
 ![QueerStation Banner](https://github.com/user-attachments/assets/7b61655b-c9d7-42cc-8608-4a4876682d1b)
 
-**QueerStation** is a vibrant, CSS-art-driven digital zine that celebrates love, identity, and belonging—loudly and unapologetically. Created for the [DEV.to Frontend Challenge – June Celebrations](https://dev.to/challenges/frontend-2025-06-04), it blends punk zine aesthetics with inclusive web design to create a space where *everyone* feels human, loved, and safe.
+**QueerStation** is a vibrant, CSS-art-driven digital zine that celebrates love, identity, and belonging—loudly and unapologetically. Created for the [DEV.to Frontend Challenge – June Celebrations](https://dev.to/challenges/frontend-2025-06-04), it blends punk zine aesthetics with inclusive web design to create a space where *everyone* feels human, loved, and safe. This project was selected as one of the winning projects of the challenge. 
 
 
 ## 🖼️ Live Demo
@@ -10,6 +10,13 @@
 👉 [Visit the Zine](https://brilliant-hamster-1e022f.netlify.app/)  
 📝 [Read the DEV.to Post](https://dev.to/sneha_2004/queerstation-a-digital-pride-zine-revolution-43h4)
 
+## 🏆 Recognition
+
+This project was **selected as one of the winning projects** of the [Name of the Challenge].
+
+> _"This project stands out for its bold design and meaningful content."_
+
+It was my **first ever dev community project**, and being recognized for it was a truly inspiring milestone in my journey. 💫
 
 ## 📌 Features
 
