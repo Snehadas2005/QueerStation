@@ -7,7 +7,7 @@
 
 ## 🖼️ Live Demo
 
-👉 [Visit the Zine](https://brilliant-hamster-1e022f.netlify.app/)  
+👉 [Visit the Zine](https://queerstationdev.netlify.app/)  
 📝 [Read the DEV.to Post](https://dev.to/sneha_2004/queerstation-a-digital-pride-zine-revolution-43h4)
 
 ## 🏆 Recognition
